@@ -72,6 +72,10 @@ def main(arguments):
 			if len(query_seqs) > 5000:
 				break
 
+		# Check if any of the following amino acids are present in the query sequences
+		# It's possible that you could have a protein query without these amino acids and the check would fail
+		# If that happens, run with --query_is_prot
+
 		amino_acids = ["R", "D", "Q", "E", "H", "I", "L", "K", "M", "F", "P", "S", "W", "Y", "V"]	
 		if any([(aa in query_seqs) for aa in amino_acids]):
 			query_type = "P"
@@ -141,7 +145,6 @@ def main(arguments):
 		### Run BLAST ###
 
 
-		blast = NcbiblastpCommandline	
 		cmd = blast(query = args.query, db = args.db, evalue = args.evalue, outfmt = "6 " + " ".join(outfmt), out = out_tsv, max_target_seqs = args.max_targets, max_hsps = args.max_hsps, qcov_hsp_perc = args.min_hsp_cov, num_threads=args.threads) 
 		stdout,stderr = cmd()
 

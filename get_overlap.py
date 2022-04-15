@@ -19,7 +19,7 @@ def main(arguments):
 
 	parser = argparse.ArgumentParser(description = __doc__, formatter_class = argparse.RawDescriptionHelpFormatter)
 
-	parser.add_argument("-f", "--files", help="Input file list", type=file_list)
+	parser.add_argument("-f", "--files", help="Input file list", type=file_list, required=True)
 	parser.add_argument("-k", "--col", help="Column index (starts at 0)", type=int, nargs="?", default=-1)
 	parser.add_argument("-d", "--delim", help="Delimiter (default: tab)", default="\t")
 	parser.add_argument("-o", "--out", help="Output file", default=sys.stdout, type=argparse.FileType("w"))
@@ -94,11 +94,6 @@ def main(arguments):
 
 			if (value_enum & set_enum) == set_enum:
 				set_inclusive[i].append(value)
-
-
-			#print("%s %s %s" % (set_enum, value_enum, (value_enum & set_enum) == set_enum))	
-			#if bool(value_enum & set_enum):
-			#	set_inclusive[i].append(value)
 
 
 	# Uncomment for to see values contained by each set
