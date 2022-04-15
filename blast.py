@@ -102,9 +102,9 @@ def main(arguments):
 		blast = NcbiblastnCommandline
 	elif query_type == "P" and db_type == "P":
 		blast = NcbiblastpCommandline
-	elif query_type == "P" and db_type == "N":
-		blast = NcbiblastxCommandline
 	elif query_type == "N" and db_type == "P":
+		blast = NcbiblastxCommandline
+	elif query_type == "P" and db_type == "N":
 		blast = NcbitblastnCommandline
 
 
